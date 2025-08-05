@@ -45,3 +45,13 @@ cart                   ;; Original remains unchanged
 (println "Lange Wörter:" long-words)
 (println "Gesamtanzahl Buchstaben:" total-letters)
 
+
+
+;; First class functions example
+;; This example demonstrates how to use functions as first-class citizens
+
+(defn transform [f coll]     ;; takes a function and a collection
+  (map f coll))
+
+(transform inc [1 2 3]) ;; => (2 3 4)
+(transform #(* % 2) [1 2 3]) ;; => (2 4 6)
