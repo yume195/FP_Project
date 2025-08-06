@@ -55,3 +55,22 @@ cart                   ;; Original remains unchanged
 
 (transform inc [1 2 3]) ;; => (2 3 4)
 (transform #(* % 2) [1 2 3]) ;; => (2 4 6)
+
+;; Lazy Sequencing example
+;; This example demonstrates the creation of an infinite lazy sequence of prime numbers.
+
+(def primes
+  (remove
+   (fn [x]
+     (some (fn [y] (zero? (mod x y))) primes)) ;; filter function
+   (iterate inc 2))) 
+
+(take 10 primes) ;; primes only calculated in this statement, thus lazy
+
+;; Recursion example
+;; This example demonstrates a simple recursive function using 'loop' and 'recur'.
+
+(defn sum_up_to [n] 
+  (loop [current n accumulator 0] (if (zero? current) accumulator (recur (dec current) (+ accumulator current))))) 
+
+(sum_up_to 5)
